@@ -1,5 +1,5 @@
 package enums;
 
-public enum Parentesco {
+public enum EnumParentesco {
     FILHO,SOBRINHO,OUTROS;
 }
