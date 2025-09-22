@@ -2,40 +2,39 @@ package metodos;
 
 import classes.Funcionario;
 import enums.EnumImpostoDeRenda;
-import enums.TaxasInss;
-import interfaces.Metodos; 
+import enums.EnumTaxasInss;
+import interfaces.Metodos;
 
 public class CalcularFolha implements Metodos {
 
 	@Override
 	public double calculoSalarioLiquido(double salarioBruto, double descontoInss, double descontoIr) {
-		return 0;
+		return salarioBruto - descontoInss - descontoIr;
 	}
 
 	@Override
 	public double calculoInss(double salarioBruto) {
 		double desconto;
 
-		if (salarioBruto <= TaxasInss.FAIXA1.getValorMaximo()) {
-			desconto = salarioBruto * TaxasInss.FAIXA1.getPercentualAliquota() - TaxasInss.FAIXA1.getValorDeducao();
+		if (salarioBruto <= EnumTaxasInss.FAIXA1.getValorMaximo()) {
+			desconto = salarioBruto * EnumTaxasInss.FAIXA1.getPercentualAliquota() - EnumTaxasInss.FAIXA1.getValorDeducao();
 
-		} else if (salarioBruto <= TaxasInss.FAIXA2.getValorMaximo()) {
-			desconto = salarioBruto * TaxasInss.FAIXA2.getPercentualAliquota() - TaxasInss.FAIXA2.getValorDeducao();
+		} else if (salarioBruto <= EnumTaxasInss.FAIXA2.getValorMaximo()) {
+			desconto = salarioBruto * EnumTaxasInss.FAIXA2.getPercentualAliquota() - EnumTaxasInss.FAIXA2.getValorDeducao();
 
-		} else if (salarioBruto <= TaxasInss.FAIXA3.getValorMaximo()) {
-			desconto = salarioBruto * TaxasInss.FAIXA3.getPercentualAliquota() - TaxasInss.FAIXA3.getValorDeducao();
+		} else if (salarioBruto <= EnumTaxasInss.FAIXA3.getValorMaximo()) {
+			desconto = salarioBruto * EnumTaxasInss.FAIXA3.getPercentualAliquota() - EnumTaxasInss.FAIXA3.getValorDeducao();
 
-		} else if (salarioBruto <= TaxasInss.FAIXA4.getValorMaximo()) {
-			desconto = salarioBruto * TaxasInss.FAIXA4.getPercentualAliquota() - TaxasInss.FAIXA4.getValorDeducao();
+		} else if (salarioBruto <= EnumTaxasInss.FAIXA4.getValorMaximo()) {
+			desconto = salarioBruto * EnumTaxasInss.FAIXA4.getPercentualAliquota() - EnumTaxasInss.FAIXA4.getValorDeducao();
 
 		} else {
-			double teto = TaxasInss.FAIXA4.getValorMaximo();
-			double aliquota = TaxasInss.FAIXA4.getPercentualAliquota();
-			double deducao = TaxasInss.FAIXA4.getValorDeducao();
+			double teto = EnumTaxasInss.FAIXA4.getValorMaximo();
+			double aliquota = EnumTaxasInss.FAIXA4.getPercentualAliquota();
+			double deducao = EnumTaxasInss.FAIXA4.getValorDeducao();
 			desconto = (teto * aliquota) - deducao;
 		}
 		return Math.round(desconto * 100.0) / 100.0;
-
 	}
 
 	@Override
@@ -63,5 +62,4 @@ public class CalcularFolha implements Metodos {
 
 		return Math.round(Math.max(0, imposto) * 100.0) / 100.0;
 	}
-
 }
