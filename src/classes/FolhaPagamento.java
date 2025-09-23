@@ -27,9 +27,8 @@ public class FolhaPagamento {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         		return  "============================\n"  +
-        				"		Folha Pagamento		 \n"  +
+        				"Folha Pagamento\n"  +
         				"============================\n"  +
-                        "Código: " + this.codigo +  "\n"  +
                         "Data de Pagamento: " + this.dataPagamento.format(formatador) + "\n" +
                         "Funcionário: " + this.funcionario.getNome() + " (CPF: " + this.funcionario.getCpf() + ")\n" +
                         "---------------------------------------\n" +
@@ -38,7 +37,7 @@ public class FolhaPagamento {
                         String.format(Locale.forLanguageTag("pt-BR"), "(-) Desconto IR:   R$ %.2f\n", this.descontoIR) +
                         "---------------------------------------\n" +
                         String.format(Locale.forLanguageTag("pt-BR"), "Salário Líquido: R$ %.2f\n", this.salarioLiquido) +
-                        "=======================================\n";
+                        "\n";
     }
 
 	public int getCodigo() {
